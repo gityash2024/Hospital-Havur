@@ -1,0 +1,22 @@
+
+@import "../css/variables/index.scss";
+
+.cardss h2{
+    font-size: 2rem;
+    color: $btnPrimary !important;
+}
+.cardss p{
+    color: $textDark !important;
+    font-weight: 500;
+    font-size: 14px;
+}
+.widget-icon {
+    height: 55px;
+    min-width: 55px;
+    width: 55px;
+    font-size: 30px;
+    background-color: $btnPrimary;
+  }
+  .cards_body{
+    padding: 15px;
+  }

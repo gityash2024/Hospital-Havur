@@ -1,0 +1,47 @@
+name: Deploy to AWS S3
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+
+      - name: Cache Node Modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install packages
+        run: yarn install
+
+      - name: Production build
+        run: |
+          unset CI
+          yarn build
+
+      - name: Deploy static site to S3 bucket
+        run: aws s3 sync build/ s3://havur-hospital-dev.com --delete --exact-timestamps
+
+      - name: Notify success
+        if: success()
+        run: echo "Deployment successful."
+
+      - name: Notify failure
+        if: failure()
+        run: echo "Deployment failed."

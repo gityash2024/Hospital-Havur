@@ -1,0 +1,22 @@
+.pagination_parent {
+    display: flex;
+    justify-content: space-between;
+  }
+  .pagination_result select {
+    background: #fff;
+    border: 0;
+    outline: 0;
+    padding: 5px 0px;
+    border-radius: 5px;
+    box-shadow: 1px 2px 3px #ebebeb;
+    color: #6c757d;
+    text-align: center;
+  }
+  .pagination_result select:focus {
+    box-shadow: none;
+  }
+  .user_modalBtn {
+    padding: 0 !important;
+    text-decoration: none !important;
+    color: inherit !important;
+  }

@@ -1,0 +1,129 @@
+@media only screen and (max-width: 1500px) {
+  .cardss p {
+    text-wrap: nowrap;
+    font-size: 14px;
+    font-weight: 700;
+}
+  .cardss h2 {
+    font-size: 23px;
+  }
+  .widget-icon {
+    height: 45px;
+    /* min-width: 45px; */
+    width: 45px;
+    font-size: 24px;}
+}
+@media only screen and (max-width: 1280px) {
+  .super-admin-dashboard .px-5 {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+  .form-control {
+    font-size: 12px !important;
+  }
+  label.form-label {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .logo_name {
+    max-width: 70px;
+  }
+  .sidebar.open li a {
+    padding: 5px;
+  }
+  .sidebar li a {
+    padding: 5px 0 2px;
+  }
+  .body_search {
+    margin-bottom: 16px;
+    width: 100%;
+  }
+  .sidebar.open {
+    width: 30%;
+}
+}
+@media only screen and (max-width: 600px) {
+  .dashboard-body {
+    width: 100%;
+    margin-left: 0;
+  }
+  .sidebar.open ~ .dashboard-body {
+    width: 100%;
+    margin-left: 0;
+  }
+  .sidebar.open {
+    width: 60%;
+    padding: 6px 14px;
+    position: fixed;
+  }
+  .sidebar {
+    position: absolute;
+    width: 0;
+    padding: 0;
+  }
+  .sidebar.open li a {
+    padding: 5px;
+  }
+  .sidebar li a {
+    padding: 0px;
+  }
+  .sidebar.open li a.active {
+    border-left: 2px solid #62B162;
+  }
+  .sidebar li a.active {
+    border-left: 0;
+  }
+  .dashboard-body > div {
+    padding: 10px;
+  }
+  .table_img {
+    width: 40px;
+  }
+  .body_search {
+    margin-bottom: 16px;
+    width: 100%;
+  }
+
+  .page_links {
+    display: none;
+  }
+
+  .page_links.open {
+    padding-top: 84px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
+  .page_links.open ul {
+    padding-top: 50px;
+    flex-direction: column;
+  }
+  .page_links .close-btn {
+    display: block;
+  }
+
+  .navbar_right .fa-bars-progress {
+    display: block;
+    cursor: pointer;
+  }
+  nav.navbar {
+    justify-content: end;
+  }
+  .togglePagelinks {
+    display: block;
+  }
+
+  .table_img {
+    width: 40px;
+  }
+}

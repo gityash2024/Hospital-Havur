@@ -1,0 +1,223 @@
+$white: #FAF5EB;
+$background-light: #FAF5EB;
+$text-gray: #8C8A84;
+$primary-green: #62B162;
+
+.body_search {
+  background: $white;
+  padding: 7px 12px;
+  border-radius: 21px;
+  border: 1px solid #ced4da;
+  width: 340px;
+  display: flex;
+  align-items: center;
+
+  input {
+    font-size: 15px;
+    color: #000;
+    font-weight: 400;
+    outline: none;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    transition: all 0.5s ease;
+    padding: 8px;
+  }
+}
+
+.admin_parent {
+  padding: 30px;
+}
+
+.table_img {
+  width: 60px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.admin_table {
+  tr {
+    vertical-align: middle;
+    box-shadow: 2px 2px 4px #e9e9e9;
+  }
+
+  th {
+    background-color: $background-light;
+    font-weight: 400;
+    text-wrap: nowrap;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.table-striped {
+  > tbody > tr:nth-of-type(even) > * {
+    background-color: #eff3f7;
+  }
+
+  > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-color-type: var(--bs-table-striped-color);
+    --bs-table-bg-type: none !important;
+  }
+}
+
+.table {
+  > :not(caption) > * > * {
+    border-bottom: 0 !important;
+    color: $text-gray !important;
+  }
+
+  thead th {
+    background: $background-light;
+  }
+}
+
+td {
+  padding: 20px 10px !important;
+}
+
+.admin_tabs {
+  border-bottom: 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  .nav-link {
+    color: $text-gray;
+    padding: 0.5rem 2px;
+    border-bottom: 2px solid transparent !important;
+    border: 0 !important;
+    padding-bottom: 0;
+
+    &:hover {
+      color: $primary-green !important;
+      border-bottom: 3px solid $primary-green !important;
+    }
+
+    &.active {
+      background: transparent !important;
+      border: 0;
+      color: $primary-green !important;
+      border-bottom: 3px solid $primary-green !important;
+    }
+  }
+
+  .nav-item {
+    flex-grow: initial !important;
+    text-wrap: nowrap;
+    margin-right: 20px;
+  }
+}
+
+.action_icn {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+
+  .edit {
+    color: $primary-green;
+    cursor: pointer;
+  }
+
+  .save {
+    color: #ffb821;
+    cursor: pointer;
+  }
+
+  .delete {
+    color: #f62947;
+    cursor: pointer;
+  }
+
+  .view {
+    color: #62B162;
+    cursor: pointer;
+  }
+}
+
+.delete_icn {
+  font-size: 50px;
+  color: #f62947;
+}
+
+.delete_modal {
+  &.modal-footer {
+    border-top: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+#dropdown-basic {
+  border: 1px solid $primary-green;
+  background-color: transparent;
+  color: $primary-green;
+  transition: 0.5s;
+
+  &:hover {
+    border: 1px solid $primary-green;
+    background-color: $primary-green;
+    color: $white;
+    transition: 0.5s;
+  }
+}
+
+.btn_style {
+  border: 1px solid $primary-green !important;
+  background-color: transparent !important;
+  color: #ffffff !important;
+  transition: 0.5s;
+
+  &:hover {
+    border: 1px solid $primary-green !important;
+    background-color: $primary-green !important;
+    color: #ffffff !important;
+    transition: 0.5s;
+  }
+}
+
+.table-container {
+  position: relative;
+  height: 750px;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #bad2ec #f1f1f1;
+}
+
+.table-pagination {
+  width: 100%;
+  background: transparent;
+  padding: 4px 0;
+  text-align: center;
+}
+
+body {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #bad2ec;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #d2eefc;
+  }
+}

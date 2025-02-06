@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+@import "./css/sidebar.scss";
+@import "./css/auth.scss";
+@import "./css/header.scss";
+@import "./css/pagination.scss";
+@import "./css/table.scss";
+@import "./css/dashboard.scss";
+@import "./css/addPatient.scss";
+@import "./css/style.scss";
+@import "./css/responsive.scss";
+
+body, html {
+  font-family: 'Oswald';
+}
+
+* {
+  font-family: 'Oswald';
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald';
+}
+
+input, button, select, textarea {
+  font-family: 'Oswald';
+}
