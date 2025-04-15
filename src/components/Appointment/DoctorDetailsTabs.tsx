@@ -27,7 +27,7 @@ const DoctorDetailsTabs = () => {
             <div className="text-end mt-4 mt-md-0">
               <a
                 href=""
-                className="btn btn-outline-primary"
+                className="btn btn-primary"
               >
                 Back
               </a>

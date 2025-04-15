@@ -615,7 +615,7 @@ const EditIPD = () => {
         <h4 className="title-sm mb-0">Edit IPD Patient</h4>
         <button
           type="button"
-          className="btn btn-outline-primary"
+          className="btn btn-primary"
           onClick={() => navigate("/IPD-patients")}
         >
           Back

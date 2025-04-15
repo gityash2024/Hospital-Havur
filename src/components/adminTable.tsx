@@ -6,6 +6,7 @@ import { FaTrash, FaEye } from "react-icons/fa";
 import { postApi } from "./services/api";
 import { useNavigate } from "react-router-dom";
 import DeleteModal from "./model/deleteModel";
+import NoDataFound from "./common/NoDataFound";
 
 const getStatusClass = (status: string) => {
   switch (status) {
@@ -76,61 +77,65 @@ const AdminTable = () => {
             </tr>
           </thead>
           <tbody>
-            {doctorList.map((item: any, index: number) => (
-              <tr key={index}>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <div className="image image-circle image-mini me-3">
-                      <a
-                        href=""
+            {doctorList.length === 0 ? (
+              <NoDataFound colSpan={5} />
+            ) : (
+              doctorList.map((item: any, index: number) => (
+                <tr key={index}>
+                  <td>
+                    <div className="d-flex align-items-center">
+                      <div className="image image-circle image-mini me-3">
+                        <a
+                          href=""
+                          onClick={() =>
+                            navigate(`/doctor/${item._id}`, { state: { item } })
+                          }
+                        >
+                          <div className="table_img">
+                            <img src="/image/nav_img.svg" alt="Nav Image" />
+                          </div>
+                        </a>
+                      </div>
+                      <div className="d-flex flex-column">
+                        <a href="#" className="text-decoration-none mb-1">
+                          {item.firstName} {item.lastName}
+                        </a>
+                        <span>{item.specialization.toUpperCase()}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{item.department}</td>
+                  <td>{item.designation}</td>
+                  <td>
+                    <div className="badge bg-light-info">{item.type}</div>
+                  </td>
+                  <td>
+                    <div className="action_icn">
+                      <button
+                        type="button"
+                        className="border-0 bg-transparent"
                         onClick={() =>
                           navigate(`/doctor/${item._id}`, { state: { item } })
                         }
                       >
-                        <div className="table_img">
-                          <img src="/image/nav_img.svg" alt="Nav Image" />
-                        </div>
-                      </a>
-                    </div>
-                    <div className="d-flex flex-column">
-                      <a href="#" className="text-decoration-none mb-1">
-                        {item.firstName} {item.lastName}
-                      </a>
-                      <span>{item.specialization.toUpperCase()}</span>
-                    </div>
-                  </div>
-                </td>
-                <td>{item.department}</td>
-                <td>{item.designation}</td>
-                <td>
-                  <div className="badge bg-light-info">{item.type}</div>
-                </td>
-                <td>
-                  <div className="action_icn">
-                    <button
-                      type="button"
-                      className="border-0 bg-transparent"
-                      onClick={() =>
-                        navigate(`/doctor/${item._id}`, { state: { item } })
-                      }
-                    >
-                      <span className="view">
-                        <FaEye />
+                        <span className="view">
+                          <FaEye />
+                        </span>
+                      </button>
+                      <span className="delete" onClick={handleDeleteClick}>
+                        <FaTrash />
                       </span>
-                    </button>
-                    <span className="delete" onClick={handleDeleteClick}>
-                      <FaTrash />
-                    </span>
-                  </div>
-                </td>
-                {showDeleteModal && (
-                  <DeleteModal
-                    onDelete={handleConfirmDelete}
-                    onClose={handleCloseDeleteModal}
-                  />
-                )}
-              </tr>
-            ))}
+                    </div>
+                  </td>
+                  {showDeleteModal && (
+                    <DeleteModal
+                      onDelete={handleConfirmDelete}
+                      onClose={handleCloseDeleteModal}
+                    />
+                  )}
+                </tr>
+              ))
+            )}
           </tbody>
         </Table>
       </div>

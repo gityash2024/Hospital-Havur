@@ -616,7 +616,7 @@ const AddIPDPatient = () => {
         <h4 className="title_sm mb-0">New IPD Patient</h4>
         <button
           type="button"
-          className="btn btn-outline-primary"
+          className="btn btn-primary"
           onClick={() => navigate("/IPD-patients")}
         >
           Back

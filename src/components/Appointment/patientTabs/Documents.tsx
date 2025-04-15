@@ -2,6 +2,7 @@ import React, {  useState } from "react";
 import Table from "react-bootstrap/Table";
 import TablePagination from "../../common/TablePagination";
 import { BsSearch } from "react-icons/bs";
+import NoDataFound from "../../common/NoDataFound";
 
 const initialData = [
     {
@@ -66,15 +67,18 @@ const Documents = () => {
             </tr>
           </thead>
           <tbody>
-            <tr><td className="text-center" colSpan={100}>No data available in table</td></tr>
-            {displayedItems.map((item, index) => (
-              <tr key={item.id}>
-                <td >
-                    {item.doc_type}
-                </td>
-               <td> {item.title}</td>
-              </tr>
-            ))}
+            {displayedItems.length === 0 ? (
+              <NoDataFound colSpan={2} />
+            ) : (
+              displayedItems.map((item, index) => (
+                <tr key={item.id}>
+                  <td>
+                      {item.doc_type}
+                  </td>
+                 <td> {item.title}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </Table>
       </div>

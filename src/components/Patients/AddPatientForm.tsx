@@ -298,7 +298,7 @@ const AddPatientForm = () => {
               <h1 className="mb-0 title_sm">Add Patient</h1>
               <div className="text-end mt-4 mt-md-0">
                 <button
-                  className="btn btn-outline-primary"
+                  className="btn btn-primary"
                   onClick={() => navigate("/patients")}
                 >
                   Back

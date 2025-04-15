@@ -7,6 +7,7 @@ import { Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { postApi } from "../../components/services/api";
 import FilterDropdown from "./FilterDropdown";
+import NoDataFound from "../common/NoDataFound";
 
 interface Patient {
   lastName: string;
@@ -182,52 +183,56 @@ const PatientListing: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {displayedItems.map((item) => (
-                <tr key={item._id}>
-                  <td>
-                    <div className="d-flex align-items-center">
-                      <div className="image image-circle image-mini me-3">
-                        <a href="#">
-                          <div className="table_img">
-                            <img
-                              src="https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg"
-                              alt="Nav Image1"
-                            />
-                          </div>
-                        </a>
+              {displayedItems.length === 0 ? (
+                <NoDataFound colSpan={5} />
+              ) : (
+                displayedItems.map((item) => (
+                  <tr key={item._id}>
+                    <td>
+                      <div className="d-flex align-items-center">
+                        <div className="image image-circle image-mini me-3">
+                          <a href="#">
+                            <div className="table_img">
+                              <img
+                                src="https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg"
+                                alt="Nav Image1"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                        <div className="d-flex flex-column">
+                          <a href="#">
+                            {item.firstName} {item.lastName}
+                          </a>
+                          <span>{item.emailAddress}</span>
+                        </div>
                       </div>
-                      <div className="d-flex flex-column">
-                        <a href="#">
-                          {item.firstName} {item.lastName}
-                        </a>
-                        <span>{item.emailAddress}</span>
+                    </td>
+                    <td>{item.mobileNumber}</td>
+                    <td>{item.birthDate}</td>
+                    <td>
+                      <span>{item.gender}</span>
+                    </td>
+                    <td>
+                      <div className="action_icn">
+                        <button
+                          type="button"
+                          className="border-0 bg-transparent"
+                          onClick={() =>
+                            navigate(`/patients/view/${item._id}`, {
+                              state: { item },
+                            })
+                          }
+                        >
+                          <span className="view">
+                            <FaEye />
+                          </span>
+                        </button>
                       </div>
-                    </div>
-                  </td>
-                  <td>{item.mobileNumber}</td>
-                  <td>{item.birthDate}</td>
-                  <td>
-                    <span>{item.gender}</span>
-                  </td>
-                  <td>
-                    <div className="action_icn">
-                      <button
-                        type="button"
-                        className="border-0 bg-transparent"
-                        onClick={() =>
-                          navigate(`/patients/view/${item._id}`, {
-                            state: { item },
-                          })
-                        }
-                      >
-                        <span className="view">
-                          <FaEye />
-                        </span>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </Table>
         </div>

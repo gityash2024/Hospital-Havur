@@ -6,6 +6,7 @@ import TablePagination from "../common/TablePagination";
 import { postApi } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
+import NoDataFound from "../common/NoDataFound";
 
 interface Appointment {
   _id: string;
@@ -174,100 +175,104 @@ const AppointmentListing = () => {
               </tr>
             </thead>
             <tbody>
-              {displayedItems.map((item, index) => {
-                const rowClass =
-                  item.status.toString() === "true"
-                    ? "bg-light-yellow" // Add light yellow background for 'true' status
-                    : item.status.toString() === "false"
-                    ? "bg-light-red" // Add light red background for 'false' status
-                    : "bg-light-default";
-                return (
-                  <tr className=" bg-blue" key={index}>
-                    <td>
-                      {item.patientId ? (
-                        <div className="d-flex flex-column">
-                          <a href="#">
-                            {item.patientId.firstName} {item.patientId.lastName}
-                          </a>
-                          <span>{item.patientId.emailAddress}</span>
-                        </div>
-                      ) : (
-                        <div className="text-muted">N/A</div>
-                      )}
-                    </td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <div className="image image-circle image-mini me-3">
-                          <a href="#">
-                            <div className="table_img">
-                              <img
-                                src="https://img.freepik.com/free-vector/doctor-medical-healthcare-pfrofessional-character-vector_53876-175176.jpg"
-                                alt="Nav Image"
-                              />
-                            </div>
-                          </a>
-                        </div>
-                        <div className="d-flex flex-column">
-                          <a href="#">
-                            {item.doctorId?.firstName +
-                              " " +
-                              item.doctorId?.lastName || "N/A"}
-                          </a>
-                          <span>{item.doctorId?.email || "N/A"}</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span id="tokenNo" className="fs-5 text-gray-800">
-                        {item.appointmentBy === "hospital" ? (
-                          <div className="badge bg-light-success">
-                            {item.tokenNo}
+              {displayedItems.length === 0 ? (
+                <NoDataFound colSpan={7} />
+              ) : (
+                displayedItems.map((item, index) => {
+                  const rowClass =
+                    item.status.toString() === "true"
+                      ? "bg-light-yellow" // Add light yellow background for 'true' status
+                      : item.status.toString() === "false"
+                      ? "bg-light-red" // Add light red background for 'false' status
+                      : "bg-light-default";
+                  return (
+                    <tr className=" bg-blue" key={index}>
+                      <td>
+                        {item.patientId ? (
+                          <div className="d-flex flex-column">
+                            <a href="#">
+                              {item.patientId.firstName} {item.patientId.lastName}
+                            </a>
+                            <span>{item.patientId.emailAddress}</span>
                           </div>
                         ) : (
-                          <div className="badge bg-light-info">
-                            {item.tokenNo}
-                          </div>
+                          <div className="text-muted">N/A</div>
                         )}
-                      </span>
-                    </td>
-                    <td>
+                      </td>
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <div className="image image-circle image-mini me-3">
+                            <a href="#">
+                              <div className="table_img">
+                                <img
+                                  src="https://img.freepik.com/free-vector/doctor-medical-healthcare-pfrofessional-character-vector_53876-175176.jpg"
+                                  alt="Nav Image"
+                                />
+                              </div>
+                            </a>
+                          </div>
+                          <div className="d-flex flex-column">
+                            <a href="#">
+                              {item.doctorId?.firstName +
+                                " " +
+                                item.doctorId?.lastName || "N/A"}
+                            </a>
+                            <span>{item.doctorId?.email || "N/A"}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span id="tokenNo" className="fs-5 text-gray-800">
+                          {item.appointmentBy === "hospital" ? (
+                            <div className="badge bg-light-success">
+                              {item.tokenNo}
+                            </div>
+                          ) : (
+                            <div className="badge bg-light-info">
+                              {item.tokenNo}
+                            </div>
+                          )}
+                        </span>
+                      </td>
+                      <td>
+                        <div className="badge bg-light-info">
+                          {item.appointmentCharge ?? "N/A"}
+                        </div>
+                      </td>
+                      {/* <td>
                       <div className="badge bg-light-info">
                         {item.appointmentCharge ?? "N/A"}
                       </div>
-                    </td>
-                    {/* <td>
-                    <div className="badge bg-light-info">
-                      {item.appointmentCharge ?? "N/A"}
-                    </div>
-                  </td> */}
-                    <td>
-                      <div className="badge bg-light-info">
-                        {item.slotTime ? formatDate(item.slotTime) : "N/A"}
-                      </div>
-                    </td>
-                    <td>
-                      <span className={getStatusClass(item.status.toString())}>
-                        {item.status.toString()}
-                      </span>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        className="border-0 bg-transparent"
-                        onClick={() =>
-                          navigate(`/appointment/view/${item._id}`, {
-                            state: { item },
-                          })
-                        }
-                      >
-                        <span className="view text-primary">
-                          <FaEye />
+                    </td> */}
+                      <td>
+                        <div className="badge bg-light-info">
+                          {item.slotTime ? formatDate(item.slotTime) : "N/A"}
+                        </div>
+                      </td>
+                      <td>
+                        <span className={getStatusClass(item.status.toString())}>
+                          {item.status.toString()}
                         </span>
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
+                      </td>
+                      <td>
+                        <div className="action_icn">
+                          <span
+                            className="view"
+                            onClick={() =>
+                              navigate(`/appointment/${item._id}/view`)
+                            }
+                          >
+                            <FaEye />
+                          </span>
+                          {/* <span className="delete" onClick={handleDeleteClick}>
+                          <FaTrash />
+                        </span> */}
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
             </tbody>
           </Table>
         </div>
@@ -281,7 +286,7 @@ const AppointmentListing = () => {
             endIndex={endIndex}
             onPageChange={handlePageChange}
             onItemsPerPageChange={handleItemsPerPageChange}
-          />{" "}
+          />
         </div>
       </div>
     </div>

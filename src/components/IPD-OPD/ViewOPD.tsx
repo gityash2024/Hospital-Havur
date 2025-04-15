@@ -23,7 +23,7 @@ const ViewOPD = () => {
             <div className="text-end mt-4 mt-md-0">
               <button
                 type="button"
-                className="btn btn-outline-primary"
+                className="btn btn-primary"
                 onClick={() => navigate("/IPD-patients")}
               >
                 Back

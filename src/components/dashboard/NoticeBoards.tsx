@@ -1,5 +1,6 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
+import NoDataFound from "../common/NoDataFound";
 
 const initialData = [
   {
@@ -58,12 +59,7 @@ const NoticeBoards = () => {
                     </tr>
                   ))
                 ) : (
-                  <tr>
-                    <td colSpan={2} className="text-center py-5">
-                      <h4 className="mb-4">No data available</h4>
-                      <span role="img" aria-label="sad face" className="fs-1">😞</span>
-                    </td>
-                  </tr>
+                  <NoDataFound colSpan={2} />
                 )}
               </tbody>
             </Table>
